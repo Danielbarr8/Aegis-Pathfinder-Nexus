@@ -4,7 +4,7 @@ import requests
 # --- THE BRAIN CONNECTOR ---
 def get_ai_response(user_prompt):
     # This is the address of the Mistral AI Brain at Hugging Face
-    API_URL = "https://api-inference.huggingface.co/models/google/gemma-2b-it"
+   API_URL = "https://api-inference.huggingface.co/models/google/gemma-1.1-2b-it" 
     headers = {"Authorization": f"Bearer {st.secrets['HF_TOKEN']}"}
     
     # We send the question to the brain
