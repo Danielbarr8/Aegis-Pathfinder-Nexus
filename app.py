@@ -3,18 +3,16 @@ import requests
 
 # --- THE BRAIN CONNECTOR ---
 def get_ai_response(user_prompt):
-    # This is the address of the Mistral AI Brain at Hugging Face
-   API_URL = "https://api-inference.huggingface.co/models/google/gemma-1.1-2b-it" 
+    # Using the "Fast Brain" (Gemma) to bypass the loading delays
+    API_URL = "https://api-inference.huggingface.co/models/google/gemma-1.1-2b-it"
     headers = {"Authorization": f"Bearer {st.secrets['HF_TOKEN']}"}
     
-    # We send the question to the brain
-    response = requests.post(API_URL, headers=headers, json={"inputs": user_prompt})
-    
-    # If the AI gives a good answer, we show it
     try:
+        response = requests.post(API_URL, headers=headers, json={"inputs": user_prompt})
+        # Extracting the text from the AI's response
         return response.json()[0]['generated_text']
     except:
-        return "The AI Brain is still waking up... Please wait 20 seconds and try again."
+        return "The AI Brain is still loading. Please wait 10 seconds and try again."
 
 # --- APP LAYOUT ---
 st.set_page_config(page_title="Nexus-Aegis AI", layout="wide")
@@ -33,7 +31,7 @@ if mode == "Pathfinder":
     st.title("🧠 Career Pathfinder")
     job = st.text_input("What is your 2026 dream job?")
     if st.button("Generate Career GPS"):
-        with st.spinner("Consulting the AI Brain..."):
+        with st.spinner("Consulting the AI..."):
             result = get_ai_response(f"Provide a 3-step career plan for a {job} in 2026.")
             st.write(result)
 
