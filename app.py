@@ -3,7 +3,7 @@ import requests
 
 def get_ai_response(user_prompt):
     # The 'Brain' Address
-    API_URL = "https://router.huggingface.co/models/google/gemma-1.1-2b-it"
+    API_URL = "https://router.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2"
     headers = {"Authorization": f"Bearer {st.secrets['HF_TOKEN']}"}
     
     try:
