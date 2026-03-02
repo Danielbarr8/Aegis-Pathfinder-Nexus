@@ -25,16 +25,7 @@ def get_ai_response(user_prompt):
         return f"🚨 SYSTEM ERROR: {str(e)}"
 
 # --- INTERFACE ---
-st.set_page_config(page_title="Nexus-Aegis AI", layout="wide")
-st.sidebar.title("🛡️ NEXUS-AEGIS 2026")
-
-mode = st.sidebar.radio("Mission Control:", ["Pathfinder", "Aegis Sentinel"])
-
-if mode == "Pathfinder":
-    st.title("🧠 Career Pathfinder")
-    job = st.text_input("What is your 2026 dream job?")
-    if st.button("Generate Career GPS"):
-        with st.spinner("Routing to Mistral Brain..."):
+st.set_page_config(page_title="Nexus-Aegis AI"
             ans = get_ai_response(f"Provide a 3-step career plan for {job}.")
             st.write(ans)
 
